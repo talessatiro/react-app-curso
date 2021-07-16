@@ -11,8 +11,8 @@ export const Home = () => {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [page, setPage] = useState(1);
-  const [postsPerPage] = useState(10);
-  const [searchValue, setSearchValue] = useState();
+  const [postsPerPage] = useState(2);
+  const [searchValue, setSearchValue] = useState('');
 
   const handleLoadPosts = useCallback(async (page, postsPerPage) => {
     const allPosts = await loadPosts();
