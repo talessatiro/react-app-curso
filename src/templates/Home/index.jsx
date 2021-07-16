@@ -35,53 +35,35 @@ export const Home = () => {
 
     setPosts(posts);
     setPage(nextPage);
-  }
+  };
 
   const handleSearchInputChange = (event) => {
     const { value } = event.target;
 
     setSearchValue(value);
-  }
-
+  };
 
   const disableLoadMoreButton = page * postsPerPage >= allPosts.length;
-  const filteredPosts = searchValue ?
-    allPosts.filter(post => {
-      return post.title.toLowerCase().includes(searchValue.toLowerCase());
-    }) : posts;
+  const filteredPosts = searchValue
+    ? allPosts.filter((post) => {
+        return post.title.toLowerCase().includes(searchValue.toLowerCase());
+      })
+    : posts;
 
   return (
     <section className="container">
       <div className="search-container">
-        {
-          searchValue && (
-            <h1>Search value: {searchValue}</h1>
-          )
-        }
-        <TextInput
-          inputValue={searchValue}
-          actionFn={handleSearchInputChange}
-        />
+        {searchValue && <h1>Search value: {searchValue}</h1>}
+        <TextInput inputValue={searchValue} actionFn={handleSearchInputChange} />
       </div>
 
-      {filteredPosts.length > 0 && (
-        <Posts posts={filteredPosts} />
-      )}
+      {filteredPosts.length > 0 && <Posts posts={filteredPosts} />}
 
-      {!filteredPosts.length && (
-        <p> There is no posts =( </p>
-      )}
+      {!filteredPosts.length && <p> There is no posts =( </p>}
 
       <div className="button-container">
-        {
-          !searchValue && (
-            <Button
-              text="Load More Posts"
-              actionFn={loadMorePosts}
-              disabled={disableLoadMoreButton} />
-          )
-        }
+        {!searchValue && <Button text="Load More Posts" actionFn={loadMorePosts} disabled={disableLoadMoreButton} />}
       </div>
     </section>
   );
-}
+};
